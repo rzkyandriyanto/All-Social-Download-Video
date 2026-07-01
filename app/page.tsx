@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -11,12 +11,12 @@ export default function Home() {
   const [activeMediaUrl, setActiveMediaUrl] = useState<string>("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const fadeUp = {
+  const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
