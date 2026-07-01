@@ -80,8 +80,8 @@ export default function Home() {
       return;
     }
     
-    // Open the direct URL to trigger browser download
-    window.open(activeMediaUrl, '_blank');
+    // Gunakan proxy API kita untuk memaksa unduhan (force download)
+    window.location.href = `/api/download?url=${encodeURIComponent(activeMediaUrl)}`;
   };
 
   return (
@@ -223,6 +223,25 @@ export default function Home() {
               </div>
             </motion.div>
           )}
+        </motion.section>
+
+        <motion.section 
+          className="tutorial-section"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="video-container">
+            <video 
+              src="/Screen Recording 2026-07-01 132138.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="tutorial-video"
+            />
+          </div>
         </motion.section>
 
         <motion.section 
