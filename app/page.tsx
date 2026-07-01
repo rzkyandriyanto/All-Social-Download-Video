@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -10,7 +11,20 @@ export default function Home() {
   const [activeMediaUrl, setActiveMediaUrl] = useState<string>("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
 
   const handleDownload = async (eOrUrl?: any) => {
     let targetUrl = url;
@@ -74,20 +88,35 @@ export default function Home() {
     <>
       <div className="glow-background"></div>
 
-      <header className="navbar">
+      <motion.header 
+        className="navbar"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="logo">DASH</div>
-      </header>
+        <div className="nav-actions">
+          <a href="https://rizky-portfolio2026-wc16.vercel.app/" target="_blank" rel="noopener noreferrer" className="navbar-link">
+            <i className="ph ph-user"></i> Author
+          </a>
+        </div>
+      </motion.header>
 
       <main className="main-content">
-        <section className="hero">
-          <div className="pill-badge">
+        <motion.section 
+          className="hero"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={fadeUp} className="pill-badge">
             <i className="ph ph-link"></i>
             <span>Downloader multi-platform</span>
-          </div>
-          <h1 className="hero-title">Download video<br />dari link favoritmu</h1>
-          <p className="hero-subtitle">Tempel link YouTube, TikTok, Facebook, atau Instagram.<br />Tools ini menyiapkan alur cepat untuk mendeteksi platform dan memulai proses download.</p>
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="hero-title">Download video<br />dari link favoritmu</motion.h1>
+          <motion.p variants={fadeUp} className="hero-subtitle">Tempel link YouTube, TikTok, Facebook, atau Instagram.<br className="desktop-break" />Tools ini menyiapkan alur cepat untuk mendeteksi platform dan memulai proses download.</motion.p>
 
-          <div className="downloader-box">
+          <motion.div variants={fadeUp} className="downloader-box">
             <div className="input-group">
               <i className="ph ph-copy input-icon"></i>
               <input
@@ -127,10 +156,15 @@ export default function Home() {
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
           
           {result && (
-            <div className="result-card">
+            <motion.div 
+              className="result-card"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
               <div className="result-header">
                 <i className="ph-fill ph-check-circle result-success-icon"></i>
                 <h3>Link Berhasil Diproses</h3>
@@ -187,45 +221,56 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
-        </section>
+        </motion.section>
 
-        <section className="features">
-          <h2 className="section-title">Cara pakai</h2>
+        <motion.section 
+          className="features"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+        >
+          <motion.h2 variants={fadeUp} className="section-title">Cara pakai</motion.h2>
           <div className="feature-grid">
-            <div className="feature-card">
+            <motion.div variants={fadeUp} className="feature-card">
               <div className="feature-icon">
                 <i className="ph ph-export"></i>
               </div>
               <h3 className="feature-title">1. Paste link</h3>
               <p className="feature-desc">Salin URL video dari platform lalu tempel ke box utama.</p>
-            </div>
-            <div className="feature-card">
+            </motion.div>
+            <motion.div variants={fadeUp} className="feature-card">
               <div className="feature-icon">
                 <i className="ph ph-crosshair"></i>
               </div>
               <h3 className="feature-title">2. Deteksi platform</h3>
               <p className="feature-desc">Interface menyiapkan alur untuk YouTube, TikTok, Facebook, dan Instagram.</p>
-            </div>
-            <div className="feature-card">
+            </motion.div>
+            <motion.div variants={fadeUp} className="feature-card">
               <div className="feature-icon">
                 <i className="ph ph-cloud-arrow-down"></i>
               </div>
               <h3 className="feature-title">3. Download</h3>
               <p className="feature-desc">Klik tombol download setelah backend/API downloader sudah terhubung.</p>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
-      <footer className="footer">
+      <motion.footer 
+        className="footer"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="footer-content">
           <div className="footer-logo">DASH</div>
           <p className="footer-desc">Web tools untuk menyiapkan link video dari YouTube, TikTok,<br />Facebook, dan Instagram dalam satu tempat.</p>
           <p className="footer-copy">© 2026 DASH. Dibuat oleh rzkyandriyanto</p>
         </div>
-      </footer>
+      </motion.footer>
     </>
   );
 }

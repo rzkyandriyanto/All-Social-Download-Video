@@ -6,6 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const kronaOne = Krona_One({ weight: "400", subsets: ["latin"], variable: "--font-krona-one" });
 
+import LenisProvider from "./lenis-provider";
+
 export const metadata: Metadata = {
   title: "DASH - Downloader multi-platform",
   description: "Web tools untuk menyiapkan link video dari YouTube, TikTok, Facebook, dan Instagram dalam satu tempat.",
@@ -21,7 +23,9 @@ export default function RootLayout({
       <head>
         <script src="https://unpkg.com/@phosphor-icons/web" async></script>
       </head>
-      <body className={`${inter.variable} ${kronaOne.variable} ${inter.className}`}>{children}</body>
+      <body className={`${inter.variable} ${kronaOne.variable} ${inter.className}`}>
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   );
 }

@@ -1,3 +1,23 @@
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 :root {
   --bg-color: #050505;
   --text-primary: #FFFFFF;
@@ -71,6 +91,22 @@ body {
 .nav-actions {
   display: flex;
   gap: 1rem;
+  align-items: center;
+}
+
+.navbar-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 
 .main-content {
@@ -160,6 +196,13 @@ body {
   color: var(--text-secondary);
   margin-bottom: 3rem;
   max-width: 800px;
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .desktop-break {
+    display: none;
+  }
 }
 
 /* Downloader Box */
@@ -219,15 +262,18 @@ body {
 }
 
 .auto-paste-hint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
+  text-align: center;
   color: var(--text-secondary);
   font-size: 0.85rem;
   margin-top: -0.5rem;
   margin-bottom: 1.5rem;
   opacity: 0.8;
+  line-height: 1.4;
+}
+
+.auto-paste-hint i {
+  margin-right: 0.2rem;
+  vertical-align: middle;
 }
 
 .platform-buttons {
