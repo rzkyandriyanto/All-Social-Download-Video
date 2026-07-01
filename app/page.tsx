@@ -234,7 +234,7 @@ export default function Home() {
         >
           <div className="video-container">
             <video 
-              src="/Screen Recording 2026-07-01 132138.mp4" 
+              src="/Enhancer-Ultra HD-Screen Recording 2026-07-01 132138.mp4" 
               autoPlay 
               loop 
               muted 
